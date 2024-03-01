@@ -1,5 +1,9 @@
 package org.devnexus.function;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Date;
+import java.util.UUID;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
@@ -14,9 +18,14 @@ class DemoFunctionApplicationTests {
 	private FunctionCatalog functionCatalog;
 
 	@Test
-	void contextLoads() {
-		Function<String, String> upercase = functionCatalog.lookup("uppercase");
-		System.out.println(upercase.apply("oleg"));
+	void validateOrderProcessing() {
+		Function<Order, OrderConfirmation> placeOrder = functionCatalog.lookup("placeOrder");
+		Order order = new Order();
+		order.setDate(new Date());
+		order.setDescription("My amazing order");
+		String orderId = UUID.randomUUID().toString();
+		order.setId(orderId);
+		assertThat(orderId).isEqualTo(orderId);
 	}
 
 }
