@@ -1,10 +1,5 @@
-#Starting point
+#Day 2
 
-This is where you begin.
-You have two options
-
-1. Create new project using Spring Initializr and add spring-cloud-function as dependency
-
-2. Use Spring CLI to create a new project from it which would already have sample code, test and README.
+This is a module that can be added to the existing project using Spring CLI to add web functionality to your function
 
 TBD
