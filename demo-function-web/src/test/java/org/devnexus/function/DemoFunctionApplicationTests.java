@@ -22,7 +22,7 @@ class DemoFunctionApplicationTests {
 	private TestRestTemplate resetTemplate;
 
 	@Test
-	void validateOrderProcessing() throws Exception {
+	void validateOrderProcessingWeb() throws Exception {
 		Order order = new Order();
 		order.setDate(new Date());
 		order.setDescription("My amazing order");

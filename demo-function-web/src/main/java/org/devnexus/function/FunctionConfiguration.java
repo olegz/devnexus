@@ -12,4 +12,14 @@ public class FunctionConfiguration {
 	public Function<Order, OrderConfirmation> placeOrder() {
 		return new OrderFunction();
 	}
+
+	@Bean
+	public Function<String, String> test() {
+		return new Function<String, String>() {
+			@Override
+			public String apply(String s) {
+				return s.toUpperCase();
+			}
+		};
+	}
 }
