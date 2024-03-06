@@ -26,6 +26,9 @@ class DemoFunctionApplicationTests {
 		String orderId = UUID.randomUUID().toString();
 		order.setId(orderId);
 		assertThat(orderId).isEqualTo(orderId);
+		OrderConfirmation orderConfirmation = placeOrder.apply(order);
+		assertThat(orderConfirmation.getConfirmationNumber()).isNotNull();
+		assertThat(orderConfirmation.getOrder().getId()).isEqualTo(order.getId());
 	}
 
 }
