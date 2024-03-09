@@ -85,6 +85,13 @@
 					<shadedArtifactAttached>true</shadedArtifactAttached>
 					<shadedClassifierName>aws</shadedClassifierName>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>foo.bar</groupId>
+						<artifactId>spring-boot-blah</artifactId>
+						<version>1.0.31.RELEASE</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
