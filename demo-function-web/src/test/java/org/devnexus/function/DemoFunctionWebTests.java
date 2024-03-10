@@ -16,7 +16,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "spring.main.web-application-type=servlet")
-class DemoFunctionApplicationTests {
+class DemoFunctionWebTests {
 	
 	@Autowired
 	private TestRestTemplate resetTemplate;

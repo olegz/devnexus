@@ -11,7 +11,7 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.messaging.support.MessageBuilder;
 
 @SpringBootTest
-class DemoFunctionApplicationTests {
+class DemoFunctionKafakSendTests {
 	
 	@Autowired
 	private ProducerFactory<String, String> producerFactory;

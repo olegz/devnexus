@@ -24,5 +24,5 @@ java -jar target/demo-function-web-0.0.1-SNAPSHOT.jar
 
 #### Send Sample Data
 ```
-curl -X POST  -i -H "Accept: application/json" localhost:8080/placeOrder -d '{"id": "foo","description":"fooproduct","date":"2024-03-03"}'
+curl -X POST  -i -H "Content-Type: application/json" localhost:8080/placeOrder -d '{"id":"6a88842c-5cd8-4207-8889-c4fd845d646a","description":"My amazing order","date":1710003590392}'
 ```
