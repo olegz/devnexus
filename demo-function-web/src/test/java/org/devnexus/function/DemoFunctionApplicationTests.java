@@ -3,8 +3,6 @@ package org.devnexus.function;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
-import java.util.Date;
-import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +19,19 @@ class DemoFunctionApplicationTests {
 	@Autowired
 	private TestRestTemplate resetTemplate;
 
+	/*
+	 * This test assumes you have a function of the following signature 'Function<String, String> test()'
+	 * which uppercases a String. hte main point of this test is that a function is invoked and tested as an HTTP endpoint
+	 * using Spring Cloud Function, 
+	 * so please modify the test and assertion to fit yoru actual function. 
+	 */
 	@Test
 	void validateOrderProcessingWeb() throws Exception {
-		Order order = new Order();
-		order.setDate(new Date());
-		order.setDescription("My amazing order");
-		String orderId = UUID.randomUUID().toString();
-		order.setId(orderId);
-		ResponseEntity<OrderConfirmation> result = this.resetTemplate.exchange(
-				RequestEntity.post(new URI("/placeOrder")).body(order), OrderConfirmation.class);
+		ResponseEntity<String> result = this.resetTemplate.exchange(
+				RequestEntity.post(new URI("/uppercase")).body("hello devnexus"), String.class);
 		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 		System.out.println(result.getBody());
-		assertThat(result.getBody().getOrder().getId()).isEqualTo(orderId);
+		assertThat(result.getBody()).isEqualTo("HELLO DEVNEXUS");
 	}
 
 }
