@@ -2,17 +2,15 @@ package org.devnexus.function;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.stereotype.Component;
 
-@Configuration
-public class FunctionConfiguration {
+@Component
+public class KafkaSenderConfiguration {
 	
 
 	private final KafkaTemplate<String, String> template;
@@ -24,7 +22,7 @@ public class FunctionConfiguration {
 	public static void main(String[] args) {
 	}
 	
-	public FunctionConfiguration(ProducerFactory<String, String> producerFactory) {
+	public KafkaSenderConfiguration(ProducerFactory<String, String> producerFactory) {
 		this.template = new KafkaTemplate<>(producerFactory);
 	}
 	
@@ -39,15 +37,5 @@ public class FunctionConfiguration {
 			throw new IllegalStateException(e);
 		}
 	}
-	
-//	@Bean
-//	public Function<String, String> uppercase()  {
-//		return value -> {
-//			System.out.println("===> Will attempt to send '" + value + "' to Kafka");
-//			value = value.toUpperCase();
-//			this.sendToKafka(value);
-//			return value;
-//		};
-//	}
 }
 
