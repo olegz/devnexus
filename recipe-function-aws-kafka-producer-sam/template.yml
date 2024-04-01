@@ -170,7 +170,7 @@ Resources:
                 - logs:PutLogEvents
               Resource: '*'
       SnapStart:
-        ApplyOn: None
+        ApplyOn: PublishedVersions
       VpcConfig:
         SecurityGroupIds:
           - sg-ec16df8f
