@@ -14,6 +14,7 @@
 	<name>recipe-function-aws-kafka-producer-sam</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
+		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<wrapper.version>1.0.29.RELEASE</wrapper.version>
