@@ -11,7 +11,7 @@ public class FunctionConfiguration {
 	@Bean
 	public Function<String, String> uppercase() {
 		return value -> {
-			System.out.println("Recceived value: " + value);
+			System.out.println("Received value: " + value);
 			return value.toUpperCase();
 		};
 	}

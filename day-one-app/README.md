@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Day 1: Getting Started
 
 This is a recipe which contains starting point for the development of Spring Boot application.
@@ -21,5 +22,18 @@ The initial code is structured based on the best practices of developing Spring 
    ./mvnw clean install
 ```
 
-You can now import the project into your IDE and begin development
 
+
+* Java 17 or Above
+
+### Build:
+```
+mvn clean package
+```
+
+### Run:
+```
+java -jar target/my-app-0.0.1-SNAPSHOT.jar
+```
+
+You can now import the project into your IDE and begin development
