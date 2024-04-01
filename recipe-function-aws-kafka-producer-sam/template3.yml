@@ -1,0 +1,189 @@
+# This AWS SAM template has been generated from your function's configuration. If
+# your function has one or more triggers, note that the AWS resources associated
+# with these triggers aren't fully specified in this template and include
+# placeholder values. Open this template in AWS Application Composer or your
+# favorite IDE and modify it to specify a serverless application with other AWS
+# resources.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless Application Model template describing your function.
+Resources:
+  KafkaDevnexusConsumer:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Description: ''
+      MemorySize: 512
+      Timeout: 15
+      Handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker
+      Runtime: java17
+      Architectures:
+        - x86_64
+      EphemeralStorage:
+        Size: 512
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 21600
+        MaximumRetryAttempts: 2
+      PackageType: Zip
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+              Resource: arn:aws:logs:us-east-2:313369169943:*
+            - Effect: Allow
+              Action:
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource:
+                - >-
+                  arn:aws:logs:us-east-2:313369169943:log-group:/aws/lambda/kafka-devnexus-consumer:*
+            - Effect: Allow
+              Action:
+                - ec2:DescribeNetworkInterfaces
+                - ec2:CreateNetworkInterface
+                - ec2:DeleteNetworkInterface
+                - ec2:DescribeInstances
+                - ec2:AttachNetworkInterface
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - kafka-cluster:Connect
+                - kafka-cluster:AlterCluster
+                - kafka-cluster:DescribeCluster
+              Resource: >-
+                arn:aws:kafka:us-east-2:313369169943:cluster/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2
+            - Effect: Allow
+              Action:
+                - kafka-cluster:DescribeTopic
+                - kafka-cluster:CreateTopic
+                - kafka-cluster:WriteData
+                - kafka-cluster:ReadData
+              Resource: >-
+                arn:aws:kafka:us-east-2:313369169943:topic/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-topic
+            - Effect: Allow
+              Action:
+                - kafka-cluster:AlterGroup
+                - kafka-cluster:DescribeGroup
+              Resource: >-
+                arn:aws:kafka:us-east-2:313369169943:group/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-group
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - kafka:*
+                - ec2:DescribeSubnets
+                - ec2:DescribeVpcs
+                - ec2:DescribeSecurityGroups
+                - ec2:DescribeRouteTables
+                - ec2:DescribeVpcEndpoints
+                - ec2:DescribeVpcAttribute
+                - kms:DescribeKey
+                - kms:CreateGrant
+                - logs:CreateLogDelivery
+                - logs:GetLogDelivery
+                - logs:UpdateLogDelivery
+                - logs:DeleteLogDelivery
+                - logs:ListLogDeliveries
+                - logs:PutResourcePolicy
+                - logs:DescribeResourcePolicies
+                - logs:DescribeLogGroups
+                - S3:GetBucketPolicy
+                - firehose:TagDeliveryStream
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateVpcEndpoint
+              Resource:
+                - arn:*:ec2:*:*:vpc/*
+                - arn:*:ec2:*:*:subnet/*
+                - arn:*:ec2:*:*:security-group/*
+            - Effect: Allow
+              Action:
+                - ec2:CreateVpcEndpoint
+              Resource:
+                - arn:*:ec2:*:*:vpc-endpoint/*
+              Condition:
+                StringEquals:
+                  aws:RequestTag/AWSMSKManaged: 'true'
+                StringLike:
+                  aws:RequestTag/ClusterArn: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateTags
+              Resource: arn:*:ec2:*:*:vpc-endpoint/*
+              Condition:
+                StringEquals:
+                  ec2:CreateAction: CreateVpcEndpoint
+            - Effect: Allow
+              Action:
+                - ec2:DeleteVpcEndpoints
+              Resource: arn:*:ec2:*:*:vpc-endpoint/*
+              Condition:
+                StringEquals:
+                  ec2:ResourceTag/AWSMSKManaged: 'true'
+                StringLike:
+                  ec2:ResourceTag/ClusterArn: '*'
+            - Effect: Allow
+              Action:
+                - iam:PassRole
+              Resource: '*'
+              Condition:
+                StringEquals:
+                  iam:PassedToService: kafka.amazonaws.com
+            - Effect: Allow
+              Action:
+                - iam:CreateServiceLinkedRole
+              Resource: >-
+                arn:aws:iam::*:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka*
+              Condition:
+                StringEquals:
+                  iam:AWSServiceName: kafka.amazonaws.com
+            - Effect: Allow
+              Action:
+                - iam:CreateServiceLinkedRole
+              Resource: >-
+                arn:aws:iam::*:role/aws-service-role/delivery.logs.amazonaws.com/AWSServiceRoleForLogDelivery*
+              Condition:
+                StringEquals:
+                  iam:AWSServiceName: delivery.logs.amazonaws.com
+      SnapStart:
+        ApplyOn: None
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-ec16df8f
+        SubnetIds:
+          - subnet-9e9584f6
+          - subnet-f7f5ba8d
+          - subnet-b9bd0bf5
+        Ipv6AllowedForDualStack: false
+      Events:
+        MSK1:
+          Type: MSK
+          Properties:
+            ConsumerGroupId: test-group
+            SourceAccessConfigurations:
+              - {}
+            StartingPosition: LATEST
+            StartingPositionTimestamp: 0
+            Stream: arn:aws:kafka:us-east-2:313369169943:cluster/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2
+            Topics:
+              - test-topic
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: Auto
+  MSKCluster1:
+    Type: AWS::MSK::Cluster
+    Properties:
+      BrokerNodeGroupInfo:
+        ClientSubnets:
+          - Fill in
+        InstanceType: kafka.t3.small
+      ClusterName: MSKCluster1
+      KafkaVersion: 2.2.1
+      NumberOfBrokerNodes: 1
