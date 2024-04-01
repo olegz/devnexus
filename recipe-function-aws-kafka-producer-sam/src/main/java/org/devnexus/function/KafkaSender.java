@@ -10,7 +10,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaSenderConfiguration {
+public class KafkaSender {
 	
 
 	private final KafkaTemplate<String, String> template;
@@ -22,12 +22,12 @@ public class KafkaSenderConfiguration {
 	public static void main(String[] args) {
 	}
 	
-	public KafkaSenderConfiguration(ProducerFactory<String, String> producerFactory) {
+	public KafkaSender(ProducerFactory<String, String> producerFactory) {
 		this.template = new KafkaTemplate<>(producerFactory);
 	}
 	
-	public RecordMetadata sendToKafka(String value) {
-		CompletableFuture<SendResult<String, String>> resultFuture = this.template.send("test-topic", value);
+	public RecordMetadata sendToKafka(String topic, String value) {
+		CompletableFuture<SendResult<String, String>> resultFuture = this.template.send(topic, value);
 		try {
 			SendResult<String, String> sendResult = resultFuture.get(10000, TimeUnit.MILLISECONDS);
 			RecordMetadata metadata = sendResult.getRecordMetadata();

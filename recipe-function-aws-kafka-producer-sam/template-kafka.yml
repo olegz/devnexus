@@ -27,6 +27,7 @@ Resources:
         MaximumRetryAttempts: 2
       PackageType: Zip
       Policies:
+      # COPY THESE BITS to the existing template or rename this one to template.yml
         - Statement:
             - Effect: Allow
               Action:
@@ -169,8 +170,6 @@ Resources:
                 - logs:CreateLogStream
                 - logs:PutLogEvents
               Resource: '*'
-      SnapStart:
-        ApplyOn: PublishedVersions
       VpcConfig:
         SecurityGroupIds:
           - sg-ec16df8f
@@ -181,6 +180,9 @@ Resources:
         Ipv6AllowedForDualStack: false
       RuntimeManagementConfig:
         UpdateRuntimeOn: Auto
+      # END COPY THESE BITS 
+      SnapStart:
+        ApplyOn: PublishedVersions   
       Environment:
         Variables:
           MAIN_CLASS: org.devnexus.function.DemoFunctionApplication
