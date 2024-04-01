@@ -2,6 +2,9 @@
 
 This is a module that can be added to the existing project using Spring CLI to add web functionality to your function.
 
+Copy necessary bits or rename the template-kafka.yml file to template.yaml
+
+
 ## Getting Started
 Add the web feature to your existing project by executing the following line from your shell while in your project directory:
 ```shell
