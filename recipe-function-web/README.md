@@ -1,7 +1,8 @@
 # Day 2 Add Web Functionality To Your Function 
 
-This is a module that can be added to the existing project using Spring CLI to add web functionality to your function.
+This is a module that can be added to the existing project using Spring CLI to add web functionality to your spring-cloud-function based project.
 
+. . .
 ## Getting Started
 Add the web feature to your existing project by executing the following line from your shell while in your project directory:
 ```shell
