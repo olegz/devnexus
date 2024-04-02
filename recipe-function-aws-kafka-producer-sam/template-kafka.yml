@@ -53,22 +53,17 @@ Resources:
                 - kafka-cluster:Connect
                 - kafka-cluster:AlterCluster
                 - kafka-cluster:DescribeCluster
-              Resource: >-
-                arn:aws:kafka:us-east-2:313369169943:cluster/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2
-            - Effect: Allow
-              Action:
                 - kafka-cluster:DescribeTopic
                 - kafka-cluster:CreateTopic
                 - kafka-cluster:WriteData
                 - kafka-cluster:ReadData
-              Resource: >-
-                arn:aws:kafka:us-east-2:313369169943:topic/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-topic
-            - Effect: Allow
-              Action:
                 - kafka-cluster:AlterGroup
                 - kafka-cluster:DescribeGroup
-              Resource: >-
-                arn:aws:kafka:us-east-2:313369169943:group/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-group
+                - kafka-cluster:WriteDataIdempotently
+              Resource: 
+                - arn:aws:kafka:us-east-2:313369169943:cluster/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2
+                - arn:aws:kafka:us-east-2:313369169943:topic/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-topic
+                - arn:aws:kafka:us-east-2:313369169943:group/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-group
             - Effect: Allow
               Action:
                 - ec2:CreateNetworkInterface
