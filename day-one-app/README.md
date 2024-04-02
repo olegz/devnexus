@@ -1,31 +1,25 @@
-# Day 1 
+# Day 1: Getting Started
 
-Contains starting point for the development but with some code.
+This is a recipe which contains starting point for the development of Spring Boot application.
+It contains only initial Spring Boot dependencies and initial code developed as `java.util.Function` as well as the initilal test.
 
+The intention of this recipe is to help you get started with developing and testing functionality of your use case without 
+worrying about how this functionality will be invoked (triggered).
 
+The initial code is structured based on the best practices of developing Spring Boot application.
 
+### Contents:
+- **Application.java** - The main application class which only contains main method and `@SpringBootApplication` annotation.
 
-## Getting Started
-Add the web feature to your existing project by executing the following line from your shell while in your project directory:
-```shell
-spring boot add --from  https://github.com/olegz/devnexus/tree/main/demo-function-web
+- **FunctionConfiguration.java** - the `@Configuration` class containing Spring components (i.e., `@Bean`)  
+
+### Usage (using Spring CLI)
+
+```
+   spring boot new my-app https://github.com/olegz/devnexus/tree/main/day-one-app
+   cd my-app
+   ./mvnw clean install
 ```
 
-### Requirements:
+You can now import the project into your IDE and begin development
 
-* Java 17 or Above
-
-### Build:
-```
-mvn clean package
-```
-
-### Run:
-```
-java -jar target/demo-function-web-0.0.1-SNAPSHOT.jar
-```
-
-#### Send Sample Data
-```
-curl -X POST  -i -H "Accept: application/json" localhost:8080/placeOrder -d '{"id": "foo","description":"fooproduct","date":"2024-03-03"}'
-```
