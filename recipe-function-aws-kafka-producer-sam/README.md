@@ -10,7 +10,11 @@ initial configuration and other artifacts to interact with AWS Kafka Cluster (MS
 configuration to connect and send messages to AWS Kafka Cluster. Certain elements would need to change to fit your environment.
 Please see the 'Policy' section which you would need to copy to your _template.yml_ file while updating server address, topic and group name.
 
-- **pom.xml** - contains all the necessary dependency and will be merged automatically using Spring CLI (i.e., `spring boot add ...`) 
+- **pom.xml** - contains all the necessary dependency and will be merged automatically using Spring CLI
+
+```
+   spring boot add https://github.com/olegz/devnexus/tree/main/recipe-function-aws-kafka-producer-sam
+```
 
 - **KafkaSender.java** - a pre-configured Spring component that uses KafkaTemplate to send messages to Kafka. You would need to inject it into your function;
     
