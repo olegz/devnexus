@@ -1,29 +1,20 @@
-# Day 2 Add Web Functionality To Your Function 
+# Day 2: Add WEB functionality to your function
 
-This is a module that can be added to the existing project using Spring CLI to add web functionality to your spring-cloud-function based project.
+This is a recipe which contains necessary bits to add functionality to expose function as an HTTP endpoint
 
-. . .
-## Getting Started
-Add the web feature to your existing project by executing the following line from your shell while in your project directory:
-```shell
-spring boot add --from  https://github.com/olegz/devnexus/tree/main/demo-function-web
+It contains necessary dependencies to use Spring Cloud Function project to expose Function Bean as an HTTP endpoint.
+It also contains a sample test case which will test your function as an HTTP endpoint.
+
+While this recipe does not require any additional configuration you can get more information about using Spring Cloud Function web support [here](https://docs.spring.io/spring-cloud-function/docs/current/reference/html/spring-cloud-function.html#_standalone_web_applications).
+
+
+### Contents:
+
+- **pom.xml** - contains all the necessary dependency and will be merged automatically using Spring CLI
+
 ```
-
-### Requirements:
-
-* Java 17 or Above
-
-### Build:
-```
-mvn clean package
-```
-
-### Run:
-```
-java -jar target/demo-function-web-0.0.1-SNAPSHOT.jar
-```
-
-#### Send Sample Data
-```
-curl -X POST  -i -H "Accept: application/json" localhost:8080/placeOrder -d '{"id": "foo","description":"fooproduct","date":"2024-03-03"}'
+   spring boot add https://github.com/olegz/devnexus/tree/main/recipe-function-web
+   ./mvnw clean install
+   java -jar target/my-app-0.0.1-SNAPSHOT.jar
+   curl -H  'Content-Type: application/json' -X POST http://localhost:8080/uppercase -d '"hello"'
 ```
