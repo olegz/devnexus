@@ -1,0 +1,22 @@
+spring boot new my-app https://github.com/olegz/devnexus/tree/main/day-one-app
+cd my-app
+mvn clean package
+java -jar target/my-app-0.0.1-SNAPSHOT.jar
+
+# Add the web dependencies and kick the tires
+spring boot add https://github.com/cppwfs/devnexus2024/tree/DEVNEXUS-LOCAL/recipe-local-web
+mvn clean package
+java -jar target/my-app-0.0.1-SNAPSHOT.jar
+ curl -X POST  -i localhost:8080/uppercase -d 'hello devnexus'
+ 
+ # Add the Stream dependencies and test as well as kick the tires
+spring boot add https://github.com/cppwfs/devnexus2024/tree/DEVNEXUS-LOCAL/recipe-local-stream
+spring boot add https://github.com/cppwfs/devnexus2024/tree/DEVNEXUS-LOCAL/recipe-local-stream-test
+mvn clean package
+java -jar target/my-app-0.0.1-SNAPSHOT.jar
+
+# Create a new basic consumer app that allows users to view the results.   They can then build on it.
+spring boot new my-consumer https://github.com/cppwfs/devnexus2024/tree/DEVNEXUS-LOCAL/demo-local-basic-consumer
+cd my-consumer
+mvn clean package
+java -jar target/my-consumer-0.0.1-SNAPSHOT.jar
