@@ -14,7 +14,7 @@ Please see the 'Policy' section which you would need to copy to your _template.y
 
 - **KafkaSender.java** - a pre-configured Spring component that uses KafkaTemplate to send messages to Kafka. You would need to inject it into your function;
     
- 
+```
     public Function<String, String> uppercase(KafkaSender sender) {
        return value -> {
            value = value.toUpperCase();
@@ -22,5 +22,5 @@ Please see the 'Policy' section which you would need to copy to your _template.y
            return value
        };
     }
- 
+ ```
  - **application.properties** - contains a initial SASL configuration to connect to secured Kafka Cluster running in AWS. 
