@@ -1,7 +1,7 @@
 # Day 1: Getting Started
 
-This is a recipe which contains starting point for the development of Spring Boot application.
-It contains only initial Spring Boot dependencies and initial code developed as `java.util.Function` as well as the initilal test.
+This is a recipe which contains starting point for the development of a Spring Boot application.
+It contains only initial Spring Boot dependencies and initial code developed as `java.util.Function` as well as the initial test.
 
 The intention of this recipe is to help you get started with developing and testing functionality of your use case without 
 worrying about how this functionality will be invoked (triggered).

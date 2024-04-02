@@ -1,9 +1,9 @@
 # Day 2: Add Kafka producer functionality
 
-This is a recipe which contains necessary bits to add functionality to send data to Kafka
+This is a recipe which contains necessary bits to add functionality to send data to Kafka on AWS.
 
 While sending to Kafka functionality provided by this recipe is generic and uses on Spring Kafka project, this recipe contains 
-initial configuration and other artifacts to interact with AWS Kafka Cluster (MSK)
+initial configuration and other artifacts to interact with AWS Kafka Cluster (MSK).
 
 ### Contents:
 - **template-kafka.yml** - SAM (AWS Serverless Application Model) deployment descriptor which contains necessary 

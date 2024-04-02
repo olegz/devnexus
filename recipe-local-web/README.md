@@ -6,7 +6,7 @@ This is a recipe that can be added to the existing project using Spring CLI to a
 ## Getting Started
 Add the web feature to your existing project by executing the following line from your shell while in your project directory:
 ```shell
-spring boot add --from  https://github.com/olegz/devnexus/tree/main/demo-local-web
+spring boot add --from  https://github.com/olegz/devnexus/tree/main/recipe-local-web
 ```
 
 ### Requirements:

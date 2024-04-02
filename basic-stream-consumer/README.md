@@ -9,7 +9,7 @@ You have two options:
 1.  Create the project using the day-one-app recipe by executing the following line from your shell:
 
 ```shell
-spring boot new my-consumer https://github.com/olegz/main/tree/DEVNEXUS-LOCAL/demo-local-basic-consumer
+spring boot new my-consumer https://github.com/olegz/main/tree/main/basic-stream-consumer
 cd my-consumer
 ```
 
