@@ -1,6 +1,6 @@
 # Day 2 Add Web Functionality To Your Function
 
-This is a recipe that can be added to the existing project using Spring CLI to add web functionality to your spring-cloud-function based project.
+This is a recipe that can be added to an existing project using Spring CLI to add web functionality to your app.
 
 . . .
 ## Getting Started

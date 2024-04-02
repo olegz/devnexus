@@ -1,6 +1,6 @@
 # Day 2 Add Stream Functionality To Your Function
 
-This is a recipe that can be added to the existing project using Spring CLI to add stream functionality to your spring-cloud-function based project.
+This recipe can be applied to an existing project using Spring CLI to add stream functionality to your app.
 
 . . .
 ## Getting Started
