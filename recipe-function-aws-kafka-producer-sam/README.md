@@ -1,4 +1,4 @@
-# Day 2 Add Kafka producer functionality
+# Day 2: Add Kafka producer functionality
 
 This is a recipe which contains necessary bits to add functionality to send data to Kafka
 
