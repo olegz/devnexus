@@ -1,31 +1,26 @@
-# Day 2 Add Web Functionality To Your Function 
+# Day 2 Add Kafka producer functionality
 
-This is a module that can be added to the existing project using Spring CLI to add web functionality to your function.
+This is a recipe which contains necessary bits to add functionality to send data to Kafka
 
-Copy necessary bits or rename the template-kafka.yml file to template.yaml
+While sending to Kafka functionality provided by this recipe is generic and uses on Spring Kafka project, this recipe contains 
+initial configuration and other artifacts to interact with AWS Kafka Cluster (MSK)
 
+### Contents:
+- **template-kafka.yml** - SAM (AWS Serverless Application Model) deployment descriptor which contains necessary 
+configuration to connect and send messages to AWS Kafka Cluster. Certain elements would need to change to fit your environment.
+Please see the 'Policy' section which you would need to copy to your _template.yml_ file while updating server address, topic and group name.
 
-## Getting Started
-Add the web feature to your existing project by executing the following line from your shell while in your project directory:
-```shell
-spring boot add --from  https://github.com/olegz/devnexus/tree/main/demo-function-web
-```
+- **pom.xml** - contains all the necessary dependency and will be merged automatically using Spring CLI (i.e., `spring boot add ...`) 
 
-### Requirements:
-
-* Java 17 or Above
-
-### Build:
-```
-mvn clean package
-```
-
-### Run:
-```
-java -jar target/demo-function-web-0.0.1-SNAPSHOT.jar
-```
-
-#### Send Sample Data
-```
-curl -X POST  -i -H "Accept: application/json" localhost:8080/placeOrder -d '{"id": "foo","description":"fooproduct","date":"2024-03-03"}'
-```
+- **KafkaSender.java** - a pre-configured Spring component that uses KafkaTemplate to send messages to Kafka. You would need to inject it into your function;
+    
+ 
+    public Function<String, String> uppercase(KafkaSender sender) {
+       return value -> {
+           value = value.toUpperCase();
+           sender.sendToKafka("test-topic", value);
+           return value
+       };
+    }
+ 
+ - **application.properties** - contains a initial SASL configuration to connect to secured Kafka Cluster running in AWS. 
