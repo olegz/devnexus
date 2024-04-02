@@ -4,19 +4,19 @@ mvn clean package
 java -jar target/my-app-0.0.1-SNAPSHOT.jar
 
 # Add the web dependencies and kick the tires
-spring boot add https://github.com/olegz/devnexus2024/tree/main/recipe-local-web
+spring boot add https://github.com/olegz/devnexus/tree/main/recipe-local-web
 mvn clean package
 java -jar target/my-app-0.0.1-SNAPSHOT.jar
  curl -X POST  -i localhost:8080/uppercase -d 'hello devnexus'
  
  # Add the Stream dependencies and test as well as kick the tires
-spring boot add https://github.com/olegz/devnexus2024/tree/main/recipe-local-stream
-spring boot add https://github.com/olegz/devnexus2024/tree/main/recipe-local-stream-test
+spring boot add https://github.com/olegz/devnexus/tree/main/recipe-local-stream
+spring boot add https://github.com/olegz/devnexus/tree/main/recipe-local-stream-test
 mvn clean package
 java -jar target/my-app-0.0.1-SNAPSHOT.jar
 
 # Create a new basic consumer app that allows users to view the results.   They can then build on it.
-spring boot new my-consumer https://github.com/olegz/devnexus2024/tree/main/demo-local-basic-consumer
+spring boot new my-consumer https://github.com/olegz/devnexus/tree/main/basic-stream-consumer
 cd my-consumer
 mvn clean package
 java -jar target/my-consumer-0.0.1-SNAPSHOT.jar
