@@ -6,7 +6,7 @@ This sample provides the sample project from which you can build a simple Spring
 Create the project using the day-one-app recipe by executing the following line from your shell:
 
 ```shell
-spring boot new my-consumer https://github.com/olegz/main/tree/main/basic-stream-consumer
+spring boot new my-consumer https://github.com/olegz/devnexus/tree/main/basic-stream-consumer
 cd my-consumer
 ```
 
