@@ -12,6 +12,8 @@ While this recipe does not require any additional configuration you can get more
 
 - **pom.xml** - contains all the necessary dependency and will be merged automatically using Spring CLI
 
+### Usage:
+ 
 ```
    spring boot add https://github.com/olegz/devnexus/tree/main/recipe-function-web
    ./mvnw clean install

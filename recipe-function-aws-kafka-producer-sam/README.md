@@ -12,10 +12,6 @@ Please see the 'Policy' section which you would need to copy to your _template.y
 
 - **pom.xml** - contains all the necessary dependency and will be merged automatically using Spring CLI
 
-```
-   spring boot add https://github.com/olegz/devnexus/tree/main/recipe-function-aws-kafka-producer-sam
-```
-
 - **KafkaSender.java** - a pre-configured Spring component that uses KafkaTemplate to send messages to Kafka. You would need to inject it into your function;
     
 ```
@@ -29,3 +25,9 @@ Please see the 'Policy' section which you would need to copy to your _template.y
     }
  ```
  - **application.properties** - contains a initial SASL configuration to connect to secured Kafka Cluster running in AWS. 
+
+### Usage:
+
+```
+   spring boot add https://github.com/olegz/devnexus/tree/main/recipe-function-aws-kafka-producer-sam
+```

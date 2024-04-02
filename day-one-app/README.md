@@ -13,7 +13,7 @@ The initial code is structured based on the best practices of developing Spring 
 
 - **FunctionConfiguration.java** - the `@Configuration` class containing Spring components (i.e., `@Bean`)  
 
-### Usage (using Spring CLI)
+### Usage: (using Spring CLI)
 
 ```
    spring boot new my-app https://github.com/olegz/devnexus/tree/main/day-one-app
