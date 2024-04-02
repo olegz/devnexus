@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Day 1: Getting Started
 
 This is a recipe which contains starting point for the development of Spring Boot application.
