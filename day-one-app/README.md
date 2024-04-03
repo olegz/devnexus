@@ -18,7 +18,7 @@ The initial code is structured based on the best practices of developing Spring 
 ```
    spring boot new my-app https://github.com/olegz/devnexus/tree/main/day-one-app
    cd my-app
-   ./mvnw clean install
+   ./mvnw clean package
 ```
 
 
