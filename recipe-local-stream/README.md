@@ -9,9 +9,19 @@ Add the stream feature to your existing project by executing the following line 
 spring boot add --from  https://github.com/olegz/devnexus/tree/main/recipe-local-stream
 ```
 
-NOTE!!!!
-$$$$$ TODO ADD code and explanation for StreamBridge
-
+## Add ability for uppercase to send message to Kafka topic 
+Update the `uppercase` method as follows to use the `StreamBridge` to send the upper cased string to the `test-topic` topic.  
+```java
+	@Bean
+	public Function<String, String> uppercase(StreamBridge streamBridge) {
+		return value -> {
+			System.out.println("Received value: " + value);
+			String uppercased= value.toUpperCase();
+			streamBridge.send("test-topic", uppercased);
+			return uppercased;
+		};
+	}
+```
 
 ### Requirements:
 
