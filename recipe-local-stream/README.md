@@ -9,6 +9,10 @@ Add the stream feature to your existing project by executing the following line 
 spring boot add --from  https://github.com/olegz/devnexus/tree/main/recipe-local-stream
 ```
 
+NOTE!!!!
+$$$$$ TODO ADD code and explanation for StreamBridge
+
+
 ### Requirements:
 
 * Java 17 or Above
