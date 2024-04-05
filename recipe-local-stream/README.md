@@ -1,8 +1,7 @@
 # Day 2 Add Stream Functionality To Your Function
 
-This recipe can be applied to an existing project using Spring CLI to add stream functionality to your app.
+This recipe can be applied to an existing project using Spring CLI to add stream functionality and associated tests to your app.
 
-. . .
 ## Getting Started
 Add the stream feature to your existing project by executing the following line from your shell while in your project directory:
 ```shell
