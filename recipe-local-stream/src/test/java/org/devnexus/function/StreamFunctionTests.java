@@ -23,10 +23,9 @@ class StreamFunctionTests {
 
     @Autowired
     private OutputDestination outputDestination;
-
+    
     @Test
     void validateFunctionWithStreamOutput() {
-
         producer.apply("hello-test");
 
         Message<byte[]> messageReceived = outputDestination.receive(1000, "test-topic");
