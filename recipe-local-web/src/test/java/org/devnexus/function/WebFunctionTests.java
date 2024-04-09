@@ -26,7 +26,7 @@ class WebFunctionTests {
 	 * so please modify the test and assertion to fit yoru actual function. 
 	 */
 	@Test
-	void validateOrderProcessingWeb() throws Exception {
+	void validateFunctionViaWeb() throws Exception {
 		ResponseEntity<String> result = this.resetTemplate.exchange(
 				RequestEntity.post(new URI("/uppercase")).body("hello devnexus"), String.class);
 		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
