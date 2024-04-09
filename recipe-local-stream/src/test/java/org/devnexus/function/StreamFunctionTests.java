@@ -16,7 +16,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 @SpringBootTest
 @DirtiesContext
 @Import(TestChannelBinderConfiguration.class)
-class StreamTests {
+class StreamFunctionTests {
 
     @Autowired
     private Function<String, String> producer;
@@ -25,7 +25,7 @@ class StreamTests {
     private OutputDestination outputDestination;
 
     @Test
-    void webFunctionTest() {
+    void validateFunctionWithStreamOutput() {
 
         producer.apply("hello-test");
 
