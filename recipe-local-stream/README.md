@@ -8,6 +8,8 @@ Add the stream feature to your existing project by executing the following line 
 spring boot add --from  https://github.com/olegz/devnexus/tree/main/recipe-local-stream
 ```
 
+> **_IMPORTANT:_** Please read and act on this following sectioin or you will get `NullPointer Cannot invoke "org.springframework.messaging.Message.getPayload()" because "messageReceived" is null` while executing the test.
+
 ## Add ability for uppercase to send message to Kafka topic 
 Update the `uppercase` method as follows to use the `StreamBridge` to send the upper cased string to the `test-topic` topic.  
 ```java
