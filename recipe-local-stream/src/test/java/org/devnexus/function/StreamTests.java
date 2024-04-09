@@ -25,7 +25,7 @@ class StreamTests {
     private OutputDestination outputDestination;
 
     @Test
-    void contextLoads() {
+    void webFunctionTest() {
 
         producer.apply("hello-test");
 
