@@ -27,3 +27,5 @@ Update the `uppercase` method as follows to use the `StreamBridge` to send the u
 ### Requirements:
 
 * Java 17 or Above
+
+~/Downloads/kafka_2.13-3.3.1/bin/kafka-console-consumer.sh --topic test-topic --from-beginning --bootstrap-server localhost:9092
