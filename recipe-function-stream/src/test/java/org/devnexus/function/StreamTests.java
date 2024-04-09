@@ -1,4 +1,4 @@
-package org.devnexus;
+package org.devnexus.function;
 
 import java.util.function.Function;
 
