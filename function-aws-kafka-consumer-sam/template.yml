@@ -1,0 +1,174 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Example of deploying Java function as AWS Lambda Function with AWS API Gateway using Spring Cloud Function support.
+
+Globals:
+  Api:
+    # API Gateway regional endpoints
+    EndpointConfiguration: REGIONAL
+
+Resources:
+  KafkaConsumerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: kafka-devnexus-consumer
+      Handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest
+      Runtime: java17
+      SnapStart:
+        ApplyOn: PublishedVersions
+      CodeUri: .
+      MemorySize: 1024
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+              Resource: arn:aws:logs:us-east-2:313369169943:*
+            - Effect: Allow
+              Action:
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource:
+                - >-
+                  arn:aws:logs:us-east-2:313369169943:log-group:/aws/lambda/kafkaConsumer:*
+            - Effect: Allow
+              Action:
+                - ec2:DescribeNetworkInterfaces
+                - ec2:CreateNetworkInterface
+                - ec2:DeleteNetworkInterface
+                - ec2:DescribeInstances
+                - ec2:AttachNetworkInterface
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - kafka-cluster:Connect
+                - kafka-cluster:AlterCluster
+                - kafka-cluster:DescribeCluster
+                - kafka-cluster:DescribeTopic
+                - kafka-cluster:CreateTopic
+                - kafka-cluster:WriteData
+                - kafka-cluster:ReadData
+                - kafka-cluster:AlterGroup
+                - kafka-cluster:DescribeGroup
+                - kafka-cluster:WriteDataIdempotently
+              Resource: 
+                - arn:aws:kafka:us-east-2:313369169943:cluster/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2
+                - arn:aws:kafka:us-east-2:313369169943:topic/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-topic
+                - arn:aws:kafka:us-east-2:313369169943:group/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2/test-group-devnexus
+            - Effect: Allow
+              Action:
+                - ec2:CreateNetworkInterface
+                - ec2:DescribeNetworkInterfaces
+                - ec2:DeleteNetworkInterface
+                - ec2:AssignPrivateIpAddresses
+                - ec2:UnassignPrivateIpAddresses
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - kafka:*
+                - ec2:DescribeSubnets
+                - ec2:DescribeVpcs
+                - ec2:DescribeSecurityGroups
+                - ec2:DescribeRouteTables
+                - ec2:DescribeVpcEndpoints
+                - ec2:DescribeVpcAttribute
+                - kms:DescribeKey
+                - kms:CreateGrant
+                - logs:CreateLogDelivery
+                - logs:GetLogDelivery
+                - logs:UpdateLogDelivery
+                - logs:DeleteLogDelivery
+                - logs:ListLogDeliveries
+                - logs:PutResourcePolicy
+                - logs:DescribeResourcePolicies
+                - logs:DescribeLogGroups
+                - S3:GetBucketPolicy
+                - firehose:TagDeliveryStream
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateVpcEndpoint
+              Resource:
+                - arn:*:ec2:*:*:vpc/*
+                - arn:*:ec2:*:*:subnet/*
+                - arn:*:ec2:*:*:security-group/*
+            - Effect: Allow
+              Action:
+                - ec2:CreateVpcEndpoint
+              Resource:
+                - arn:*:ec2:*:*:vpc-endpoint/*
+              Condition:
+                StringEquals:
+                  aws:RequestTag/AWSMSKManaged: 'true'
+                StringLike:
+                  aws:RequestTag/ClusterArn: '*'
+            - Effect: Allow
+              Action:
+                - ec2:CreateTags
+              Resource: arn:*:ec2:*:*:vpc-endpoint/*
+              Condition:
+                StringEquals:
+                  ec2:CreateAction: CreateVpcEndpoint
+            - Effect: Allow
+              Action:
+                - ec2:DeleteVpcEndpoints
+              Resource: arn:*:ec2:*:*:vpc-endpoint/*
+              Condition:
+                StringEquals:
+                  ec2:ResourceTag/AWSMSKManaged: 'true'
+                StringLike:
+                  ec2:ResourceTag/ClusterArn: '*'
+            - Effect: Allow
+              Action:
+                - iam:PassRole
+              Resource: '*'
+              Condition:
+                StringEquals:
+                  iam:PassedToService: kafka.amazonaws.com
+            - Effect: Allow
+              Action:
+                - iam:CreateServiceLinkedRole
+              Resource: >-
+                arn:aws:iam::*:role/aws-service-role/kafka.amazonaws.com/AWSServiceRoleForKafka*
+              Condition:
+                StringEquals:
+                  iam:AWSServiceName: kafka.amazonaws.com
+            - Effect: Allow
+              Action:
+                - iam:CreateServiceLinkedRole
+              Resource: >-
+                arn:aws:iam::*:role/aws-service-role/delivery.logs.amazonaws.com/AWSServiceRoleForLogDelivery*
+              Condition:
+                StringEquals:
+                  iam:AWSServiceName: delivery.logs.amazonaws.com
+      Timeout: 30
+      Events:
+        MSKEvent:
+          Type: MSK
+          Properties:
+            StartingPosition: LATEST
+            Stream: arn:aws:kafka:us-east-2:313369169943:cluster/demo-cluster-1/273d2cf3-3c1e-4581-a956-c850fd760200-s2
+            Topics:
+              - test-topic
+            ConsumerGroupId: test-group-devnexus
+      VpcConfig:
+            SecurityGroupIds:
+              - sg-ec16df8f
+            SubnetIds:
+              - subnet-f7f5ba8d
+              - subnet-9e9584f6 
+              - subnet-b9bd0bf5
+            Ipv6AllowedForDualStack: false
+      Environment:
+        Variables:
+          MAIN_CLASS: org.devnexus.function.DemoFunctionApplication
+
+#Outputs:
+#  SpringUppercaseApi:
+#    Description: URL for application
+#    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/uppercase'
+#    Export:
+#      Name: UppercaseFunction
+      
+# curl -H "Content-Type: application/json" -X POST -d '"foobar"' https://jvd5wf478j.execute-api.us-east-2.amazonaws.com/uppercase
+# you should receive the response "FOOBAR"
