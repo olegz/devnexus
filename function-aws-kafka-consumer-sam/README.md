@@ -1,28 +1,22 @@
-# Day 2 Add Web Functionality To Your Function 
+# Sample of Kafka consumer as AWS Lambda 
 
-This is a module that can be added to the existing project using Spring CLI to add web functionality to your function.
+This ready to depliy example represents a simple Kafka consumer setup to be triggered by a messages sent to AWS MSK Cluster topic.
 
-## Getting Started
-Add the web feature to your existing project by executing the following line from your shell while in your project directory:
-```shell
-spring boot add --from  https://github.com/olegz/devnexus/tree/main/demo-function-web
-```
+The intention of this is demostrate:
+- How to create a consumer integrated with AWS MSK cluster
+- Testing of messages arriving to AWS MSK topic
 
-### Requirements:
+### Requirements
 
 * Java 17 or Above
+  
+### Usage: (using Spring CLI)
 
-### Build:
-```
-mvn clean package
-```
+While you can create a new project from this module using `spring boot new ....`, you can also simply build and deploy it as is providing you have AWS and AWS SAM environment setup.
 
-### Run:
 ```
-java -jar target/demo-function-web-0.0.1-SNAPSHOT.jar
-```
+sam build
 
-#### Send Sample Data
-```
-curl -X POST  -i -H "Accept: application/json" localhost:8080/placeOrder -d '{"id": "foo","description":"fooproduct","date":"2024-03-03"}'
+sam deploy --guided
+
 ```
