@@ -38,6 +38,7 @@ Please see the 'Policy' section which you would need to copy to your _template.y
 > 
 - Disable the test that was brought by the earlier additions since the code you are about to modify and configuration point to MSK Cluster in AWS. This is to ensure that you can successfully build/deploy the project. While there are capabilities to have a Docker container with AWS MSK capabilities as well as other approaches, we did not want to introduce this level of complexity with this recipe at the moment.
 - Modify the code of the function to inject and use `KafkaSender` as described above
+- Copy the *Policy* segment contained in `template-kafka.yml` into your existing SAM template.yaml file's *Policy* section.
 
 ### Build/Deploy
 
