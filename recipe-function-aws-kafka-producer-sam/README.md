@@ -26,7 +26,7 @@ Please see the 'Policy' section which you would need to copy to your _template.y
        return value -> {
            value = value.toUpperCase();
            sender.sendToKafka("test-topic", value);
-           return value
+           return value;
        };
     }
  ```
